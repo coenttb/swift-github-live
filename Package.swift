@@ -1,0 +1,119 @@
+// swift-tools-version: 6.0
+
+import PackageDescription
+
+extension String {
+    static let githubLive: Self = "GitHub Live"
+    static let githubTrafficLive: Self = "GitHub Traffic Live"
+    static let githubRepositoriesLive: Self = "GitHub Repositories Live"
+    static let githubStargazersLive: Self = "GitHub Stargazers Live"
+    static let githubLiveShared: Self = "GitHub Live Shared"
+}
+
+extension Target.Dependency {
+    static var githubLive: Self { .target(name: .githubLive) }
+    static var githubTrafficLive: Self { .target(name: .githubTrafficLive) }
+    static var githubRepositoriesLive: Self { .target(name: .githubRepositoriesLive) }
+    static var githubStargazersLive: Self { .target(name: .githubStargazersLive) }
+    static var githubLiveShared: Self { .target(name: .githubLiveShared) }
+}
+
+extension Target.Dependency {
+    static var githubTypes: Self { .product(name: "GitHub Types", package: "swift-github-types") }
+    static var githubTrafficTypes: Self { .product(name: "GitHub Traffic Types", package: "swift-github-types") }
+    static var githubRepositoriesTypes: Self { .product(name: "GitHub Repositories Types", package: "swift-github-types") }
+    static var githubStargazersTypes: Self { .product(name: "GitHub Stargazers Types", package: "swift-github-types") }
+    static var githubTypesShared: Self { .product(name: "GitHub Types Shared", package: "swift-github-types") }
+    
+    static var serverFoundation: Self { .product(name: "ServerFoundation", package: "swift-server-foundation") }
+    static var authenticating: Self { .product(name: "Authenticating", package: "swift-authenticating") }
+    static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
+}
+
+let package = Package(
+    name: "swift-github-live",
+    platforms: [
+        .macOS(.v14),
+        .iOS(.v17)
+    ],
+    products: [
+        .library(name: .githubLive, targets: [.githubLive]),
+        .library(name: .githubTrafficLive, targets: [.githubTrafficLive]),
+        .library(name: .githubRepositoriesLive, targets: [.githubRepositoriesLive]),
+        .library(name: .githubStargazersLive, targets: [.githubStargazersLive]),
+        .library(name: .githubLiveShared, targets: [.githubLiveShared])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/coenttb/swift-github-types", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-server-foundation", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-authenticating", from: "0.0.2"),
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2")
+    ],
+    targets: [
+        .target(
+            name: .githubLiveShared,
+            dependencies: [
+                .serverFoundation,
+                .authenticating,
+                .githubTypesShared
+            ]
+        ),
+        .target(
+            name: .githubLive,
+            dependencies: [
+                .serverFoundation,
+                .githubLiveShared,
+                .githubTypes,
+                .githubTrafficLive,
+                .githubRepositoriesLive,
+                .githubStargazersLive
+            ]
+        ),
+        .target(
+            name: .githubTrafficLive,
+            dependencies: [
+                .serverFoundation,
+                .githubLiveShared,
+                .githubTrafficTypes
+            ]
+        ),
+        .target(
+            name: .githubRepositoriesLive,
+            dependencies: [
+                .serverFoundation,
+                .githubLiveShared,
+                .githubRepositoriesTypes
+            ]
+        ),
+        .target(
+            name: .githubStargazersLive,
+            dependencies: [
+                .serverFoundation,
+                .githubLiveShared,
+                .githubStargazersTypes
+            ]
+        ),
+        .testTarget(
+            name: "GitHub Live Tests",
+            dependencies: [
+                .githubLive,
+                .dependenciesTestSupport
+            ]
+        ),
+        .testTarget(
+            name: "GitHub Traffic Live Tests",
+            dependencies: [
+                .githubTrafficLive,
+                .dependenciesTestSupport
+            ]
+        ),
+        .testTarget(
+            name: "GitHub Repositories Live Tests",
+            dependencies: [
+                .githubRepositoriesLive,
+                .dependenciesTestSupport
+            ]
+        )
+    ],
+    swiftLanguageModes: [.v6]
+)
