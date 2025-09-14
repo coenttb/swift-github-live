@@ -11,6 +11,7 @@ import GitHub_Traffic_Live
 import GitHub_Repositories_Live
 import GitHub_Stargazers_Live
 import GitHub_OAuth_Live
+import GitHub_Collaborators_Live
 
 // https://docs.github.com/en/rest?apiVersion=2022-11-28
 extension GitHub.Client {
@@ -40,6 +41,9 @@ extension GitHub.Client {
                 },
                 oauth: .live { api in
                     try makeRequest(.oauth(api))
+                },
+                collaborators: .live { api in
+                    try makeRequest(.collaborators(api))
                 }
             )
         }

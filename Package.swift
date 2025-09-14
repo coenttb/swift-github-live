@@ -8,6 +8,7 @@ extension String {
     static let githubRepositoriesLive: Self = "GitHub Repositories Live"
     static let githubStargazersLive: Self = "GitHub Stargazers Live"
     static let githubOAuthLive: Self = "GitHub OAuth Live"
+    static let githubCollaboratorsLive: Self = "GitHub Collaborators Live"
     static let githubLiveShared: Self = "GitHub Live Shared"
 }
 
@@ -17,6 +18,7 @@ extension Target.Dependency {
     static var githubRepositoriesLive: Self { .target(name: .githubRepositoriesLive) }
     static var githubStargazersLive: Self { .target(name: .githubStargazersLive) }
     static var githubOAuthLive: Self { .target(name: .githubOAuthLive) }
+    static var githubCollaboratorsLive: Self { .target(name: .githubCollaboratorsLive) }
     static var githubLiveShared: Self { .target(name: .githubLiveShared) }
 }
 
@@ -26,6 +28,7 @@ extension Target.Dependency {
     static var githubRepositoriesTypes: Self { .product(name: "GitHub Repositories Types", package: "swift-github-types") }
     static var githubStargazersTypes: Self { .product(name: "GitHub Stargazers Types", package: "swift-github-types") }
     static var githubOAuthTypes: Self { .product(name: "GitHub OAuth Types", package: "swift-github-types") }
+    static var githubCollaboratorsTypes: Self { .product(name: "GitHub Collaborators Types", package: "swift-github-types") }
     static var githubTypesShared: Self { .product(name: "GitHub Types Shared", package: "swift-github-types") }
     
     static var serverFoundation: Self { .product(name: "ServerFoundation", package: "swift-server-foundation") }
@@ -45,6 +48,7 @@ let package = Package(
         .library(name: .githubRepositoriesLive, targets: [.githubRepositoriesLive]),
         .library(name: .githubStargazersLive, targets: [.githubStargazersLive]),
         .library(name: .githubOAuthLive, targets: [.githubOAuthLive]),
+        .library(name: .githubCollaboratorsLive, targets: [.githubCollaboratorsLive]),
         .library(name: .githubLiveShared, targets: [.githubLiveShared])
     ],
     dependencies: [
@@ -71,7 +75,8 @@ let package = Package(
                 .githubTrafficLive,
                 .githubRepositoriesLive,
                 .githubStargazersLive,
-                .githubOAuthLive
+                .githubOAuthLive,
+                .githubCollaboratorsLive
             ]
         ),
         .target(
@@ -104,6 +109,14 @@ let package = Package(
                 .serverFoundation,
                 .githubLiveShared,
                 .githubOAuthTypes
+            ]
+        ),
+        .target(
+            name: .githubCollaboratorsLive,
+            dependencies: [
+                .serverFoundation,
+                .githubLiveShared,
+                .githubCollaboratorsTypes
             ]
         ),
         .testTarget(
