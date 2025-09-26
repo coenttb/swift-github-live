@@ -38,36 +38,21 @@ import GitHubLive
 import GitHubTrafficLive
 import Dependencies
 
-// Configure GitHub client with authentication
-let githubClient = GitHub.Client.live(
-    accessToken: "ghp_your_token_here"
-)
-
-// Use with dependency injection
-withDependencies {
-    $0.githubClient = githubClient
-} operation: {
-    // Your code here
-}
-```
-
 ### Fetching Repository Traffic
 
 ```swift
-import GitHubTrafficLive
+import GitHub
 
-let trafficClient = GitHub.Traffic.Client.live(
-    accessToken: token
-)
+@Dependency(\.github.client.traffic) var traffic
 
 // Get repository views
-let views = try await trafficClient.views(
+let views = try await traffic.views(
     owner: "coenttb",
     repo: "swift-github-live"
 )
 
 // Get clone statistics
-let clones = try await trafficClient.clones(
+let clones = try await traffic.clones(
     owner: "coenttb", 
     repo: "swift-github-live",
     per: .week
@@ -77,48 +62,19 @@ let clones = try await trafficClient.clones(
 ### Working with Stargazers
 
 ```swift
-import GitHubStargazersLive
+import GitHub
 
-let stargazersClient = GitHub.Stargazers.Client.live(
-    accessToken: token
-)
+@Dependency(\.github.client.stargazers) var stargazers
+
 
 // Get stargazers with timestamps
-let stargazers = try await stargazersClient.list(
+let result = try await stargazers.list(
     owner: "coenttb",
     repo: "swift-github-live",
     page: 1,
     perPage: 100
 )
 ```
-
-## Features
-
-### Authentication
-
-Supports multiple authentication methods:
-
-- Personal Access Tokens (classic and fine-grained)
-- GitHub App installation tokens
-- OAuth app tokens
-- Unauthenticated requests (with rate limits)
-
-### Rate Limiting
-
-Automatic handling of GitHub's rate limits with:
-
-- Rate limit tracking
-- Automatic retry with backoff
-- Rate limit headers parsing
-
-### Error Handling
-
-Comprehensive error handling for:
-
-- Network failures
-- API errors
-- Authentication issues
-- Rate limit exceeded
 
 ## Architecture
 
