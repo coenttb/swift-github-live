@@ -174,9 +174,9 @@ GitHub Live → Complete client (combines all above)
 
 Built on robust foundations:
 
-- [swift-github-types](https://github.com/coenttb/swift-github-types): Type-safe GitHub API types and routing
-- [swift-server-foundation](https://github.com/coenttb/swift-server-foundation): Server-side HTTP utilities and URLRequest handling
-- [swift-authenticating](https://github.com/coenttb/swift-authenticating): Bearer token authentication wrapper
+- [swift-github-types](https://github.com/coenttb/swift-github-types): A Swift package with foundational types for GitHub.
+- [swift-server-foundation](https://github.com/coenttb/swift-server-foundation): A Swift package with tools to simplify server development.
+- [swift-authenticating](https://github.com/coenttb/swift-authenticating): A Swift package for type-safe HTTP authentication with URL routing integration.
 - [swift-dependencies](https://github.com/pointfreeco/swift-dependencies): Dependency injection framework
 
 ## Testing
@@ -211,9 +211,9 @@ The package requires the following environment variables for live integration te
 
 ## Related Packages
 
-- [swift-github-types](https://github.com/coenttb/swift-github-types): Type-safe GitHub API types and routing
-- [swift-server-foundation](https://github.com/coenttb/swift-server-foundation): Server-side HTTP utilities
-- [swift-authenticating](https://github.com/coenttb/swift-authenticating): Authentication abstractions for HTTP clients
+- [swift-github-types](https://github.com/coenttb/swift-github-types): A Swift package with foundational types for GitHub.
+- [swift-server-foundation](https://github.com/coenttb/swift-server-foundation): A Swift package with tools to simplify server development.
+- [swift-authenticating](https://github.com/coenttb/swift-authenticating): A Swift package for type-safe HTTP authentication with URL routing integration.
 
 ## Requirements
 
