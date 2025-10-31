@@ -211,9 +211,20 @@ The package requires the following environment variables for live integration te
 
 ## Related Packages
 
+### Dependencies
+
+- [swift-authenticating](https://github.com/coenttb/swift-authenticating): A Swift package for type-safe HTTP authentication with URL routing integration.
 - [swift-github-types](https://github.com/coenttb/swift-github-types): A Swift package with foundational types for GitHub.
 - [swift-server-foundation](https://github.com/coenttb/swift-server-foundation): A Swift package with tools to simplify server development.
-- [swift-authenticating](https://github.com/coenttb/swift-authenticating): A Swift package for type-safe HTTP authentication with URL routing integration.
+
+### Used By
+
+- [swift-github](https://github.com/coenttb/swift-github): A Swift package for the GitHub API.
+- [swift-identities-github](https://github.com/coenttb/swift-identities-github): A Swift package integrating GitHub OAuth with swift-identities.
+
+### Third-Party Dependencies
+
+- [pointfreeco/swift-dependencies](https://github.com/pointfreeco/swift-dependencies): A dependency management library for controlling dependencies in Swift.
 
 ## Requirements
 
