@@ -6,22 +6,22 @@
 //
 
 extension EnvironmentVariables {
-  public var githubBaseUrl: URL {
-    get {
-      self["GITHUB_BASE_URL"]
-        .flatMap(URL.init(string:))
-        ?? URL(string: "https://api.github.com")!
+    public var githubBaseUrl: URL {
+        get {
+            self["GITHUB_BASE_URL"]
+                .flatMap(URL.init(string:))
+                ?? URL(string: "https://api.github.com")!
+        }
+        set { self["GITHUB_BASE_URL"] = newValue.absoluteString }
     }
-    set { self["GITHUB_BASE_URL"] = newValue.absoluteString }
-  }
 
-  public var githubToken: String {
-    get { self["GITHUB_TOKEN"] ?? "" }
-    set { self["GITHUB_TOKEN"] = newValue }
-  }
+    public var githubToken: String {
+        get { self["GITHUB_TOKEN"] ?? "" }
+        set { self["GITHUB_TOKEN"] = newValue }
+    }
 
-  public var githubApiVersion: String {
-    get { self["GITHUB_API_VERSION"] ?? "2022-11-28" }
-    set { self["GITHUB_API_VERSION"] = newValue }
-  }
+    public var githubApiVersion: String {
+        get { self["GITHUB_API_VERSION"] ?? "2022-11-28" }
+        set { self["GITHUB_API_VERSION"] = newValue }
+    }
 }
