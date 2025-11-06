@@ -48,7 +48,7 @@ struct ReadmeVerificationTests {
             testRepo,
             nil
         )
-        #expect(views.count >= 0)
+        // Test passes if API call succeeds
     }
 
     @Test("README Lines 70-75: Traffic clones example")
@@ -61,7 +61,7 @@ struct ReadmeVerificationTests {
             testRepo,
             .week
         )
-        #expect(clones.count >= 0)
+        // Test passes if API call succeeds
     }
 
     @Test("README Lines 78-79: Traffic paths example")
@@ -95,7 +95,7 @@ struct ReadmeVerificationTests {
             testRepo,
             request
         )
-        #expect(response.count >= 0)
+        // Test passes if API call succeeds
     }
 
     // MARK: - Lines 107-142: Repository Management
@@ -117,7 +117,7 @@ struct ReadmeVerificationTests {
             direction: .desc
         )
         let repos = try await github.client.repositories.list(listRequest)
-        #expect(repos.count >= 0)
+        // Test passes if API call succeeds
     }
 
     @Test("README Lines 127-132: Create repository example")

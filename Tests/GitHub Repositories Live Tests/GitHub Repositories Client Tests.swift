@@ -26,14 +26,12 @@ struct GitHubRepositoriesClientTests {
 
         let response = try await repositories.client.list()
         print(response)
-        #expect(response.isEmpty)
+        #expect(!response.isEmpty)
 
-        if !response.isEmpty {
-            let firstRepo = response[0]
-            #expect(!firstRepo.name.isEmpty)
-            #expect(!firstRepo.fullName.isEmpty)
-            #expect(firstRepo.owner != nil)
-        }
+        let firstRepo = response[0]
+        #expect(!firstRepo.name.isEmpty)
+        #expect(!firstRepo.fullName.isEmpty)
+        #expect(firstRepo.owner != nil)
     }
 
     @Test("Should successfully get a specific repository")
