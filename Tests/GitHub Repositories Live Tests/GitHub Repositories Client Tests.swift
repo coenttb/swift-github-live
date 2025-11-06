@@ -26,7 +26,7 @@ struct GitHubRepositoriesClientTests {
 
         let response = try await repositories.client.list()
         print(response)
-        #expect(response.count >= 0)
+        #expect(response.isEmpty)
 
         if !response.isEmpty {
             let firstRepo = response[0]

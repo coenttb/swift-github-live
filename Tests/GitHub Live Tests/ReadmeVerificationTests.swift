@@ -70,7 +70,7 @@ struct ReadmeVerificationTests {
         @Dependency(\.envVars.githubTestRepo) var testRepo
 
         let paths = try await github.client.traffic.paths(testOwner, testRepo)
-        #expect(paths.paths.count >= 0)
+        #expect(paths.paths.isEmpty)
     }
 
     @Test("README Lines 82-83: Traffic referrers example")
@@ -79,7 +79,7 @@ struct ReadmeVerificationTests {
         @Dependency(\.envVars.githubTestRepo) var testRepo
 
         let referrers = try await github.client.traffic.referrers(testOwner, testRepo)
-        #expect(referrers.referrers.count >= 0)
+        #expect(referrers.referrers.isEmpty)
     }
 
     // MARK: - Lines 88-103: Working with Stargazers
@@ -95,7 +95,7 @@ struct ReadmeVerificationTests {
             testRepo,
             request
         )
-        #expect(response.count >= 0)
+        #expect(response.isEmpty)
     }
 
     // MARK: - Lines 107-142: Repository Management
@@ -117,7 +117,7 @@ struct ReadmeVerificationTests {
             direction: .desc
         )
         let repos = try await github.client.repositories.list(listRequest)
-        #expect(repos.count >= 0)
+        #expect(repos.isEmpty)
     }
 
     @Test("README Lines 127-132: Create repository example")

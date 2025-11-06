@@ -39,6 +39,7 @@ extension GitHub.Stargazers: @retroactive DependencyKey {
         @Dependency(\.envVars.githubBaseUrl) var baseUrl
         @Dependency(\.envVars.githubToken) var token
 
+        // swiftlint:disable:next force_try
         return try! GitHub.Stargazers.Authenticated(
             baseURL: baseUrl,
             token: token

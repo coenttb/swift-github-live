@@ -60,6 +60,7 @@ extension GitHub {
 
 extension GitHub.Client: @retroactive DependencyKey {
     public static var liveValue: GitHub.Authenticated {
+        // swiftlint:disable:next force_try
         try! GitHub.Client.live()
     }
 

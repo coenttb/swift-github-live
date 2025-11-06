@@ -52,11 +52,11 @@ struct GitHubClientTests {
 
         // Get top paths
         let paths = try await github.client.traffic.paths(owner, repo)
-        #expect(paths.paths.count >= 0)
+        #expect(paths.paths.isEmpty)
 
         // Get top referrers
         let referrers = try await github.client.traffic.referrers(owner, repo)
-        #expect(referrers.referrers.count >= 0)
+        #expect(referrers.referrers.isEmpty)
     }
 
     @Test("Should handle rate limiting gracefully")

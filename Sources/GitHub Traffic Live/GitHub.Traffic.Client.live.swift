@@ -63,6 +63,7 @@ extension GitHub.Traffic: @retroactive DependencyKey {
         @Dependency(\.envVars.githubBaseUrl) var baseUrl
         @Dependency(\.envVars.githubToken) var token
 
+        // swiftlint:disable:next force_try
         return try! GitHub.Traffic.Authenticated(
             baseURL: baseUrl,
             token: token

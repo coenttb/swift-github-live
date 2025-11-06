@@ -46,7 +46,7 @@ struct GitHubTrafficClientTests {
         let views = response.views
         if !views.isEmpty {
             let firstView = views[0]
-            #expect(firstView.count >= 0)
+            #expect(firstView.count > 0)
             #expect(firstView.uniques >= 0)
         }
     }
@@ -77,7 +77,7 @@ struct GitHubTrafficClientTests {
         let clones = response.clones
         if !clones.isEmpty {
             let firstClone = clones[0]
-            #expect(firstClone.count >= 0)
+            #expect(firstClone.count > 0)
             #expect(firstClone.uniques >= 0)
         }
     }
@@ -95,7 +95,7 @@ struct GitHubTrafficClientTests {
             let firstPath = paths[0]
             #expect(!firstPath.path.isEmpty)
             #expect(!firstPath.title.isEmpty)
-            #expect(firstPath.count >= 0)
+            #expect(firstPath.count > 0)
             #expect(firstPath.uniques >= 0)
         }
     }
@@ -112,7 +112,7 @@ struct GitHubTrafficClientTests {
         if !referrers.isEmpty {
             let firstReferrer = referrers[0]
             #expect(!firstReferrer.referrer.isEmpty)
-            #expect(firstReferrer.count >= 0)
+            #expect(firstReferrer.count > 0)
             #expect(firstReferrer.uniques >= 0)
         }
     }

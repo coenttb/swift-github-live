@@ -24,23 +24,41 @@ extension Target.Dependency {
 
 extension Target.Dependency {
     static var githubTypes: Self { .product(name: "GitHub Types", package: "swift-github-types") }
-    static var githubTrafficTypes: Self { .product(name: "GitHub Traffic Types", package: "swift-github-types") }
-    static var githubRepositoriesTypes: Self { .product(name: "GitHub Repositories Types", package: "swift-github-types") }
-    static var githubStargazersTypes: Self { .product(name: "GitHub Stargazers Types", package: "swift-github-types") }
-    static var githubOAuthTypes: Self { .product(name: "GitHub OAuth Types", package: "swift-github-types") }
-    static var githubCollaboratorsTypes: Self { .product(name: "GitHub Collaborators Types", package: "swift-github-types") }
-    static var githubTypesShared: Self { .product(name: "GitHub Types Shared", package: "swift-github-types") }
-    
-    static var serverFoundation: Self { .product(name: "ServerFoundation", package: "swift-server-foundation") }
-    static var authenticating: Self { .product(name: "Authenticating", package: "swift-authenticating") }
-    static var dependenciesTestSupport: Self { .product(name: "DependenciesTestSupport", package: "swift-dependencies") }
+    static var githubTrafficTypes: Self {
+        .product(name: "GitHub Traffic Types", package: "swift-github-types")
+    }
+    static var githubRepositoriesTypes: Self {
+        .product(name: "GitHub Repositories Types", package: "swift-github-types")
+    }
+    static var githubStargazersTypes: Self {
+        .product(name: "GitHub Stargazers Types", package: "swift-github-types")
+    }
+    static var githubOAuthTypes: Self {
+        .product(name: "GitHub OAuth Types", package: "swift-github-types")
+    }
+    static var githubCollaboratorsTypes: Self {
+        .product(name: "GitHub Collaborators Types", package: "swift-github-types")
+    }
+    static var githubTypesShared: Self {
+        .product(name: "GitHub Types Shared", package: "swift-github-types")
+    }
+
+    static var serverFoundation: Self {
+        .product(name: "ServerFoundation", package: "swift-server-foundation")
+    }
+    static var authenticating: Self {
+        .product(name: "Authenticating", package: "swift-authenticating")
+    }
+    static var dependenciesTestSupport: Self {
+        .product(name: "DependenciesTestSupport", package: "swift-dependencies")
+    }
 }
 
 let package = Package(
     name: "swift-github-live",
     platforms: [
         .macOS(.v14),
-        .iOS(.v17)
+        .iOS(.v17),
     ],
     products: [
         .library(name: .githubLive, targets: [.githubLive]),
@@ -49,13 +67,13 @@ let package = Package(
         .library(name: .githubStargazersLive, targets: [.githubStargazersLive]),
         .library(name: .githubOAuthLive, targets: [.githubOAuthLive]),
         .library(name: .githubCollaboratorsLive, targets: [.githubCollaboratorsLive]),
-        .library(name: .githubLiveShared, targets: [.githubLiveShared])
+        .library(name: .githubLiveShared, targets: [.githubLiveShared]),
     ],
     dependencies: [
         .package(url: "https://github.com/coenttb/swift-github-types", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-server-foundation", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-authenticating", from: "0.0.2"),
-        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2")
+        .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
     ],
     targets: [
         .target(
@@ -63,7 +81,7 @@ let package = Package(
             dependencies: [
                 .serverFoundation,
                 .authenticating,
-                .githubTypesShared
+                .githubTypesShared,
             ]
         ),
         .target(
@@ -76,7 +94,7 @@ let package = Package(
                 .githubRepositoriesLive,
                 .githubStargazersLive,
                 .githubOAuthLive,
-                .githubCollaboratorsLive
+                .githubCollaboratorsLive,
             ]
         ),
         .target(
@@ -84,7 +102,7 @@ let package = Package(
             dependencies: [
                 .serverFoundation,
                 .githubLiveShared,
-                .githubTrafficTypes
+                .githubTrafficTypes,
             ]
         ),
         .target(
@@ -92,7 +110,7 @@ let package = Package(
             dependencies: [
                 .serverFoundation,
                 .githubLiveShared,
-                .githubRepositoriesTypes
+                .githubRepositoriesTypes,
             ]
         ),
         .target(
@@ -100,7 +118,7 @@ let package = Package(
             dependencies: [
                 .serverFoundation,
                 .githubLiveShared,
-                .githubStargazersTypes
+                .githubStargazersTypes,
             ]
         ),
         .target(
@@ -108,7 +126,7 @@ let package = Package(
             dependencies: [
                 .serverFoundation,
                 .githubLiveShared,
-                .githubOAuthTypes
+                .githubOAuthTypes,
             ]
         ),
         .target(
@@ -116,30 +134,30 @@ let package = Package(
             dependencies: [
                 .serverFoundation,
                 .githubLiveShared,
-                .githubCollaboratorsTypes
+                .githubCollaboratorsTypes,
             ]
         ),
         .testTarget(
             name: "GitHub Live Tests",
             dependencies: [
                 .githubLive,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .testTarget(
             name: "GitHub Traffic Live Tests",
             dependencies: [
                 .githubTrafficLive,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
         ),
         .testTarget(
             name: "GitHub Repositories Live Tests",
             dependencies: [
                 .githubRepositoriesLive,
-                .dependenciesTestSupport
+                .dependenciesTestSupport,
             ]
-        )
+        ),
     ],
     swiftLanguageModes: [.v6]
 )
