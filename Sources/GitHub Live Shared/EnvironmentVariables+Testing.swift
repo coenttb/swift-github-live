@@ -27,23 +27,24 @@ extension EnvironmentVariables {
 
 extension EnvironmentVariables {
     /// Development environment configuration for testing
-    /// Loads from .env file in project root
+    /// Loads from .env file in project root, falls back to system environment in CI
     package static var development: Self {
         let projectRoot = URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent()  // GitHub Live Shared
             .deletingLastPathComponent()  // Sources
             .deletingLastPathComponent()  // swift-github-live
 
-        return try! .live(
-            environmentConfiguration: .projectRoot(
+        // Gracefully fall back to system environment if .env file doesn't exist (e.g., in CI)
+        return (try? Self.live(
+            environmentConfiguration: EnvironmentConfiguration.projectRoot(
                 projectRoot,
                 environment: "development"
             ),
-            requiredKeys: [
-                "GITHUB_TOKEN",
-                "GITHUB_BASE_URL",
-            ]
-        )
+            requiredKeys: []
+        )) ?? (try! Self.live(
+            environmentConfiguration: EnvironmentConfiguration.system,
+            requiredKeys: []
+        ))
     }
 }
 
