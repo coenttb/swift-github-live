@@ -35,16 +35,18 @@ extension EnvironmentVariables {
             .deletingLastPathComponent()  // swift-github-live
 
         // Gracefully fall back to system environment if .env file doesn't exist (e.g., in CI)
-        return (try? Self.live(
-            environmentConfiguration: EnvironmentConfiguration.projectRoot(
-                projectRoot,
-                environment: "development"
-            ),
-            requiredKeys: []
-        )) ?? (try! Self.live(
-            environmentConfiguration: EnvironmentConfiguration.none,
-            requiredKeys: []
-        ))
+        return
+            (try? Self.live(
+                environmentConfiguration: EnvironmentConfiguration.projectRoot(
+                    projectRoot,
+                    environment: "development"
+                ),
+                requiredKeys: []
+            ))
+            ?? (try! Self.live(
+                environmentConfiguration: EnvironmentConfiguration.none,
+                requiredKeys: []
+            ))
     }
 }
 
