@@ -70,7 +70,7 @@ let package = Package(
         .library(name: .githubLiveShared, targets: [.githubLiveShared]),
     ],
     dependencies: [
-        .package(url: "https://github.com/coenttb/swift-github-types", from: "0.0.1"),
+        .package(url: "https://github.com/coenttb/swift-github-types", from: "0.1.0"),
         .package(url: "https://github.com/coenttb/swift-server-foundation", from: "0.0.1"),
         .package(url: "https://github.com/coenttb/swift-authenticating", from: "0.0.2"),
         .package(url: "https://github.com/pointfreeco/swift-dependencies", from: "1.9.2"),
